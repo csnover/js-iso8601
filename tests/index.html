@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES5 ISO 8601 Test Suite</title>
+    <link rel="stylesheet" href="qunit/qunit/qunit.css" media="screen">
+    <script src="qunit/qunit/qunit.js"></script>
+    <script>/[?&]useNativeDateParse(?:\W|$)/.test(location.search) || (Date.parse = function () { return NaN; });</script>
+    <script src="../iso8601.js"></script>
+    <script src="test.js"></script>
+</head>
+<body>
+    <h1 id="qunit-header">ES5 ISO 8601 Test Suite</h1>
+    <h2 id="qunit-banner"></h2>
+    <div id="qunit-testrunner-toolbar"></div>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+    <div id="qunit-fixture"></div>
+</body>
+</html>
