@@ -15,3 +15,9 @@ your browser’s native Date.parse implementation will not be used. Add “?useN
 tests that will attempt to use native implementation first.
 
 **Note:** You must checkout using `git clone --recursive` in order for unit tests to function.
+
+
+License
+-------
+
+© 2011 Colin Snover. [MIT Licensed](http://www.opensource.org/licenses/mit-license.php).
