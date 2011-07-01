@@ -1,7 +1,7 @@
 var sixHours       = 6 * 60 * 60 * 1000,
     sixHoursThirty = sixHours + 30 * 60 * 1000;
 
-test('date-part', 13, function () {
+test('date-part', 16, function () {
     strictEqual(Date.parse('1970-01-01'), Date.UTC(1970, 0, 1, 0, 0, 0, 0), 'Unix epoch');
 
     strictEqual(Date.parse('2001'),       Date.UTC(2001, 0, 1, 0, 0, 0, 0), '2001');
@@ -23,13 +23,16 @@ test('date-part', 13, function () {
      strictEqual(Date.parse('0099-12-31T00:00Z'), Date.UTC(100, 0, 1, 0, 0, 0, 0) - 1000 * 60 * 60 * 24, '0099-12-31T00:00Z');
     */
 
-    ok(isNaN(Date.parse('asdf')), 'invalid YYYY (asdf)');
-    ok(isNaN(Date.parse('1970-as-df')), 'invalid YYYY-MM-DD (1970-as-df)');
+    ok(isNaN(Date.parse('asdf')), 'invalid YYYY (non-digits)');
+    ok(isNaN(Date.parse('1970-as-df')), 'invalid YYYY-MM-DD (non-digits)');
+    ok(isNaN(Date.parse('1970-01-')), 'invalid YYYY-MM- (extra hyphen)');
+    ok(isNaN(Date.parse('19700101')), 'invalid YYYY-MM-DD (missing hyphens)');
+    ok(isNaN(Date.parse('197001')), 'ambiguous YYYY-MM/YYYYYY (missing plus/minus or hyphen)');
 
     // TODO: Test for invalid YYYYMM and invalid YYYYY?
 });
 
-test('date-time', 27, function () {
+test('date-time', 31, function () {
     strictEqual(Date.parse('2001-02-03T04:05'),        Date.UTC(2001, 1, 3, 4, 5, 0, 0), '2001-02-03T04:05');
     strictEqual(Date.parse('2001-02-03T04:05:06'),     Date.UTC(2001, 1, 3, 4, 5, 6, 0), '2001-02-03T04:05:06');
     strictEqual(Date.parse('2001-02-03T04:05:06.007'), Date.UTC(2001, 1, 3, 4, 5, 6, 7), '2001-02-03T04:05:06.007');
@@ -65,6 +68,10 @@ test('date-time', 27, function () {
 
     ok(isNaN(Date.parse('1970-01-01 00:00:00')), 'invalid date-time (missing T)');
     ok(isNaN(Date.parse('1970-01-01T00:00:00.000000')), 'invalid date-time (too many characters in millisecond part)');
+    ok(isNaN(Date.parse('1970-01-01T00:00:00,000')), 'invalid date-time (comma instead of dot)');
+    ok(isNaN(Date.parse('1970-01-01T00:00:00+0630')), 'invalid date-time (missing colon in timezone part)');
+    ok(isNaN(Date.parse('1970-01-01T0000')), 'invalid date-time (missing colon in time part)');
+    ok(isNaN(Date.parse('1970-01-01T00:00.000')), 'invalid date-time (msec with missing seconds)');
 
     // TODO: DRY
 });
