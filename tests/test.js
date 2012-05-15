@@ -45,6 +45,7 @@ test('date-time', 31, function () {
     strictEqual(Date.parse('2001-02-03T04:05:06-00:00'),     Date.UTC(2001, 1, 3, 4, 5, 6, 0), '2001-02-03T04:05:06-00:00');
     strictEqual(Date.parse('2001-02-03T04:05:06.007-00:00'), Date.UTC(2001, 1, 3, 4, 5, 6, 7), '2001-02-03T04:05:06.007-00:00');
 
+    strictEqual(Date.parse('2001-02-03T04:05+0000'),         Date.UTC(2001, 1, 3, 4, 5, 0, 0), '2001-02-03T04:05+00:00');
     strictEqual(Date.parse('2001-02-03T04:05+00:00'),        Date.UTC(2001, 1, 3, 4, 5, 0, 0), '2001-02-03T04:05+00:00');
     strictEqual(Date.parse('2001-02-03T04:05:06+00:00'),     Date.UTC(2001, 1, 3, 4, 5, 6, 0), '2001-02-03T04:05:06+00:00');
     strictEqual(Date.parse('2001-02-03T04:05:06.007+00:00'), Date.UTC(2001, 1, 3, 4, 5, 6, 7), '2001-02-03T04:05:06.007+00:00');
@@ -69,7 +70,6 @@ test('date-time', 31, function () {
     ok(isNaN(Date.parse('1970-01-01 00:00:00')), 'invalid date-time (missing T)');
     ok(isNaN(Date.parse('1970-01-01T00:00:00.000000')), 'invalid date-time (too many characters in millisecond part)');
     ok(isNaN(Date.parse('1970-01-01T00:00:00,000')), 'invalid date-time (comma instead of dot)');
-    ok(isNaN(Date.parse('1970-01-01T00:00:00+0630')), 'invalid date-time (missing colon in timezone part)');
     ok(isNaN(Date.parse('1970-01-01T0000')), 'invalid date-time (missing colon in time part)');
     ok(isNaN(Date.parse('1970-01-01T00:00.000')), 'invalid date-time (msec with missing seconds)');
 
