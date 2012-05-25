@@ -33,7 +33,7 @@ test('date-part', 16, function () {
     // TODO: Test for invalid YYYYMM and invalid YYYYY?
 });
 
-test('date-time', 31, function () {
+test('date-time', 33, function () {
     strictEqual(Date.parse('2001-02-03T04:05'),        +new Date(2001, 1, 3, 4, 5, 0, 0), '2001-02-03T04:05');
     strictEqual(Date.parse('2001-02-03T04:05:06'),     +new Date(2001, 1, 3, 4, 5, 6, 0), '2001-02-03T04:05:06');
     strictEqual(Date.parse('2001-02-03T04:05:06.007'), +new Date(2001, 1, 3, 4, 5, 6, 7), '2001-02-03T04:05:06.007');
@@ -61,6 +61,8 @@ test('date-time', 31, function () {
     strictEqual(Date.parse('2001T04:05:06.007'),             +new Date(2001, 0, 1, 4, 5, 6, 7), '2001T04:05:06.007');
     strictEqual(Date.parse('2001-02T04:05:06.007'),          +new Date(2001, 1, 1, 4, 5, 6, 7), '2001-02T04:05:06.007');
     strictEqual(Date.parse('2001-02-03T04:05:06.007'),       +new Date(2001, 1, 3, 4, 5, 6, 7), '2001-02-03T04:05:06.007');
+    strictEqual(Date.parse('2001-02-03T04:05:06.07'),       +new Date(2001, 1, 3, 4, 5, 6, 70), '2001-02-03T04:05:06.07');
+    strictEqual(Date.parse('2001-02-03T04:05:06.7'),       +new Date(2001, 1, 3, 4, 5, 6, 700), '2001-02-03T04:05:06.7');
     strictEqual(Date.parse('2001-02-03T04:05:06.007-06:30'), Date.UTC(2001, 1, 3, 4, 5, 6, 7) + sixHoursThirty, '2001-02-03T04:05:06.007-06:30');
 
     strictEqual(Date.parse('-010000T04:05'),       +new Date(-10000, 0, 1, 4, 5, 0, 0), '-010000T04:05');
