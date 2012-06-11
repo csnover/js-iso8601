@@ -10,7 +10,7 @@
         var timestamp, struct, minutesOffset = 0;
 
         //              1 YYYY                 2 MM        3 DD              4 HH     5 mm        6 ss            7 msec         8 Z 9 ±    10 tzHH    11 tzmm
-        if ((struct = /^(\d{4}|[+\-]\d{6})(?:-?(\d{2})(?:-?(\d{2}))?)?(?:[ T]?(\d{2}):?(\d{2})(?::?(\d{2})(?:[,\.](\d{3,}))?)?(?:(Z)|([+\-])(\d{2})(?::?(\d{2}))?)?)?$/.exec(date))) {
+        if ((struct = /^(\d{4}|[+\-]\d{6})(?:-?(\d{2})(?:-?(\d{2}))?)?(?:[ T]?(\d{2}):?(\d{2})(?::?(\d{2})(?:[,\.](\d{1,}))?)?(?:(Z)|([+\-])(\d{2})(?::?(\d{2}))?)?)?$/.exec(date))) {
             // avoid NaN timestamps caused by “undefined” values being passed to Date.UTC
             for (var i = 0, k; (k = numericKeys[i]); ++i) {
                 struct[k] = +struct[k] || 0;
@@ -21,7 +21,7 @@
             struct[3] = +struct[3] || 1;
 
             // allow arbitrary sub-second precision beyond milliseconds
-            struct[7] = struct[7] ? +struct[7].substr(0, 3) : 0;
+            struct[7] = struct[7] ? + (struct[7] + "00").substr(0, 3) : 0;
 
             // timestamps without timezone identifiers should be considered local time
             if (struct[8] === undefined && struct[9] === undefined) {
