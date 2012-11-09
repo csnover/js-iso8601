@@ -3,6 +3,18 @@
  * © 2011 Colin Snover <http://zetafleet.com>
  * Released under MIT license.
  */
+
+// Support AMD and normal loading
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD - Register as an anonymous module.
+        define(factory);
+    } else {
+        // Normal script loading
+        factory();
+    }
+}(this, function() {
+
 (function (Date, undefined) {
     var origParse = Date.parse, numericKeys = [ 1, 4, 5, 6, 7, 10, 11 ];
     Date.parse = function (date) {
@@ -39,3 +51,5 @@
         return timestamp;
     };
 }(Date));
+
+}));
