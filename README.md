@@ -5,8 +5,8 @@ ECMAScript revision 5 adds native support for simplified [ISO 8601](http://en.wi
 `Date.parse` method, but some browsers currently on the market (Safari 5-, IE 8-, Firefox 3.6-) do not support it. This
 is a simple shim for Date.parse that adds support for parsing ES5 simplified ISO 8601 strings to all browsers.
 
-If you are attempting to parse date strings coming from non-ES5-conformant backends, please consider using the
-[non-conformant edition](https://github.com/csnover/js-iso8601/tree/lax).
+**If you are attempting to parse date strings coming from non-ES5-conformant backends, please consider using the
+[non-conformant edition](https://github.com/csnover/js-iso8601/tree/lax).**
 
 Caveats
 -------
